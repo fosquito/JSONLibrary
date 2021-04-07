@@ -1,3 +1,4 @@
+
 class NumberJSON : ValueJSON() {
-    var number: Double = 0.0
+    var number: Number = 0
 }

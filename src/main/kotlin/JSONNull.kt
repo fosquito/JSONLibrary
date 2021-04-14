@@ -1,0 +1,3 @@
+
+class JSONNull : JSONValue() {
+}

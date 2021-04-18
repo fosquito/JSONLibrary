@@ -1,3 +1,4 @@
 
-abstract class JSONValue {
+abstract class JsonValue {
+
 }

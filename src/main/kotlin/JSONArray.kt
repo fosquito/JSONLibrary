@@ -1,4 +1,4 @@
 
-class JSONArray : JSONValue() {
-    var values: MutableList<JSONValue> = mutableListOf()
+class JsonArray : JsonValue() {
+    var values: MutableList<JsonValue> = mutableListOf()
 }

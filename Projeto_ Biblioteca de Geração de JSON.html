@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <title>Projeto: Biblioteca de Geração de JSON</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://andre-santos-pt.github.io/style.css">
+  </head>
+
+
+  <body>
+
+
+<header class="w3-container w3-black w3-top">
+
+  <h2>Projeto: Biblioteca de Geração de JSON</h2>
+  <div class="w3-display-topright"</div>
+</div>
+
+</header>
+
+    <div class="w3-panel w3-padding-64">
+        <p>Este projeto consiste em desenvolver uma biblioteca para produzir dados no formato <a href="http://www.json.org">JSON</a>. Na sua forma mais simples, podemos apenas instanciar objetos da biblioteca (modelo) e serializar para texto. Será possível também derivar JSON a partir de objetos, podendo o processo ser adaptado por via de anotações nas classes desses objetos. Não será exigido o <em>parsing</em> de JSON textual.</p>
+
+<p>Será assumida a perspectiva de quem está a desenvolver algo para terceiros utilizarem (biblioteca). Assim sendo, aspetos de <strong>API (forma e documentação)</strong> deverão ser tidos em conta. Por outro lado, a biblioteca deverá oferecer alguma flexibilidade na sua utilização para permitir aplicá-la num leque alargado de situações.</p>
+
+<p>Por forma a garantir uma boa arquitetura da solução, e simultaneamente ter um “guia” para o desenvolvimento, o projeto deverá ser faseado de acordo com o que se propõe neste enunciado. A funcionalidade terá que ser feita de raiz, <strong>não é permitida a utilização de quaisquer bibliotecas externas</strong> (exceto as coleções e JUnit).</p>
+
+<p>As funcionalidades principais deverão ter <strong>casos de teste</strong> correspondentes, como forma de controlar a qualidade e demonstrar a funcionalidade.</p>
+
+<h1 id="fase-1---modelo-de-dados">Fase 1 - Modelo de dados</h1>
+
+<p>Nesta fase o objetivo é ter um conjunto de classes cujos objetos representam uma estrutura de dados JSON em memória. O JSON textual será obtido através do varrimento desta estrutura.</p>
+
+<p>Não devemos gerar JSON textual diretamente, mas sim ter objetos em memória (que designaremos por <em>modelo</em>) que representam os dados. Estes por sua vez são serializados para texto (e potencialmente para ficheiros). Isto permitirá uma maior flexibilidade na manipulação dos dados (pe., fazer pesquisas e validações).</p>
+
+<p>As classes do modelo deverão oferecer uma forma de varrimento baseada em <em>visitantes</em> (padrão de desenho <em>Visitor</em>). Utilizando esta forma deverá ser possível:</p>
+<ul>
+  <li>serializar a estrutura para texto</li>
+  <li>efetuar pesquisas, como por exemplo:
+    <ul>
+      <li>obter todas as strings</li>
+      <li>obter todos os objetos que têm determinadas propriedades</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="fase-2---inferência-por-reflexão">Fase 2 - Inferência por reflexão</h1>
+
+<p>Nesta fase o objetivo é desenvolver funcionalidade que permita instanciar automaticamente o modelo (desenvolvido na Fase 1) por reflexão de quaisquer objetos de valor (<em>data class</em>).</p>
+
+<p>Deverá haver uma forma padrão de instanciação que suporte:</p>
+<ul>
+  <li>objetos de valor (<em>data class</em>)</li>
+  <li>coleções (<em>Collection</em>)</li>
+  <li>tabelas (<em>Map</em>)</li>
+  <li>tipos primitivos</li>
+  <li>strings</li>
+  <li>enumerados</li>
+</ul>
+
+<p>Como forma de adaptar a instanciação, deverão ser definidas anotações para permitir:</p>
+<ul>
+  <li>excluir propriedades da instanciação</li>
+  <li>utilizar outros identificadores</li>
+</ul>
+
+<h1 id="fase-3">Fase 3</h1>
+
+<p>(a publicar)</p>
+
+    </div>
+
+
+    <footer class="w3-container w3-black w3-bottom">
+      &copy;&nbsp;<a href="/">André L. Santos</a><a href="http://www.iscte-iul.pt" target="_blank"><img src="/iscte.png" height="40px" class="w3-display-right"/></a>
+    </footer>
+  </body>
+</html>

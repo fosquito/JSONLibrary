@@ -1,4 +1,4 @@
 
-class JSONBoolean : JSONValue() {
+class JsonBoolean : JsonValue() {
     var boolean: Boolean = false
 }

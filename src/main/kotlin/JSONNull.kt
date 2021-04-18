@@ -1,3 +1,3 @@
 
-class JSONNull : JSONValue() {
+class JsonNull : JsonValue() {
 }

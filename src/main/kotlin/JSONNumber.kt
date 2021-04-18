@@ -1,4 +1,4 @@
 
-class JsonNumber : JsonValue() {
-    var number: Number = 0
+data class JsonNumber(var value: Number) : JsonValue() {
+
 }

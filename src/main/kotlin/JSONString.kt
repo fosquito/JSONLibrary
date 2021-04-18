@@ -1,8 +1,4 @@
 
-class JsonString : JsonValue() {
-    var str: String = ""
+data class JsonString(var value: String) : JsonValue() {
 
-    fun add(value: String) {
-        str = value;
-    }
 }

@@ -1,4 +1,3 @@
 
-class JsonBoolean : JsonValue() {
-    var boolean: Boolean = false
+data class JsonBoolean(var value: Boolean) : JsonValue() {
 }

@@ -5,10 +5,4 @@ class JsonObject : JsonValue() {
     fun add (key: String, value: JsonValue) {
         jsonObject[key] = value
     }
-
-    fun teste () {
-        var a = 1
-        var b = 2
-        var c = a + b
-    }
 }

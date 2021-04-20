@@ -17,7 +17,7 @@ fun main() {
     var trueBool: JsonBoolean = JsonBoolean(true)
     var falseBool: JsonBoolean = JsonBoolean(false)
 
-    //var jNull: JsonNull = JsonNull()
+    var jNull: JsonNull = JsonNull()
 
     var json: Json = Json()
     json.add(string1)
@@ -25,7 +25,7 @@ fun main() {
     json.add(object1)
     json.add(array1)
     json.add(trueBool)
-    //json.add(jNull)
+    json.add(jNull)
 
     json.print
 }

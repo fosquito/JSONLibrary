@@ -1,5 +1,7 @@
 
 class JsonNull : JsonValue() {
 
-    override fun toString(): String = "null"
+    override fun print() {
+        print("Null")
+    }
 }

@@ -10,6 +10,7 @@ fun main() {
 
     var object1: JsonObject = JsonObject()
     var object2: JsonObject = JsonObject()
+    var object3: JsonObject = JsonObject()
 
     var array1: JsonArray = JsonArray()
     var array2: JsonArray = JsonArray()
@@ -23,7 +24,10 @@ fun main() {
 
     object2.add("Nome", JsonString("Ana"))
     object2.add("Idade", JsonNumber(29))
-    object2.add("IsMale", JsonBoolean(false))
+    object2.add("Homem?", JsonBoolean(false))
+
+    object3.add("Objeto", string3)
+    object3.add("Pessoa", object2)
 
     array2.add(number1)
     array2.add(string2)
@@ -37,6 +41,7 @@ fun main() {
     json.add(jNull)
     json.add(object2)
     json.add(array2)
+    json.add(object3)
 
     json.print()
 }

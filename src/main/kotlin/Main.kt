@@ -20,12 +20,23 @@ fun main() {
     var jNull: JsonNull = JsonNull()
 
     var json: Json = Json()
+
+    object2.add("Nome", JsonString("Ana"))
+    object2.add("Idade", JsonNumber(29))
+    object2.add("IsMale", JsonBoolean(false))
+
+    array2.add(number1)
+    array2.add(string2)
+    array2.add(array1)
+
     json.add(string1)
     json.add(number3)
     json.add(object1)
     json.add(array1)
     json.add(trueBool)
     json.add(jNull)
+    json.add(object2)
+    json.add(array2)
 
-    json.print
+    json.print()
 }

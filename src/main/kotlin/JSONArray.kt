@@ -11,7 +11,7 @@ class JsonArray() : JsonValue() {
         print("[")
         var counter: Int = 1
         value.forEach {
-            it.print
+            it.print()
             if(counter++ != value.size)
                 print(", ")
         }

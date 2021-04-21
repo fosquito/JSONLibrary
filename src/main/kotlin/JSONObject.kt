@@ -8,12 +8,16 @@ class JsonObject : JsonValue() {
     }
 
     override fun print() {
-        //require(jsonObject.isNotEmpty())
+        var counter: Int = 1
         println("{")
         jsonObject.forEach {
+            print("\t")
             print(it.key+": ")
-            it.value.print
-            println(", ")
+            it.value.print()
+            if(counter++ != jsonObject.size)
+                println(", ")
+            else
+                println()
         }
         print("}")
     }

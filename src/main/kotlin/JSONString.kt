@@ -6,6 +6,5 @@ data class JsonString(var value: String) : JsonValue() {
     }
 
     override fun accept(v: Visitor) {
-        TODO("Not yet implemented")
-    }
+        v.visit(this)    }
 }

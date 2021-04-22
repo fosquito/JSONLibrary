@@ -17,4 +17,8 @@ class JsonArray() : JsonValue() {
         }
         print("]")
     }
+
+    override fun accept(v: Visitor) {
+        v.visit(this)
+    }
 }

@@ -1,10 +1,14 @@
 
 class JsonObject : JsonValue() {
 
-    var jsonObject: MutableMap<String, JsonValue> = mutableMapOf()
+    var jsonObject: MutableMap<JsonString, JsonValue> = mutableMapOf()
 
-    fun add (key: String, value: JsonValue) {
+    fun add (key: JsonString, value: JsonValue) {
         jsonObject[key] = value
+    }
+
+    fun getValue(key: JsonString): JsonValue? {
+        return jsonObject[key.value]
     }
 
     override fun print() {
@@ -29,5 +33,12 @@ class JsonObject : JsonValue() {
         }
 
         printTab(0, this)
+    }
+
+    override fun accept(v: Visitor) {
+        if(v.visit(this))
+            jsonObject.forEach{
+                //TODO
+            }
     }
 }

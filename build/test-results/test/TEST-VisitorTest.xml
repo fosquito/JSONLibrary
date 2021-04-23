@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-22T22:17:46" hostname="FOSQUITOMIGAMIN" time="0.024">
+<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-23T16:33:43" hostname="FOSQUITOMIGAMIN" time="0.008">
   <properties/>
-  <testcase name="test1" classname="VisitorTest" time="0.024"/>
-  <system-out><![CDATA[JsonObject@166f7486
+  <testcase name="test1" classname="VisitorTest" time="0.008"/>
+  <system-out><![CDATA["color"kotlin.Unit
+"red"kotlin.Unit
+"value"kotlin.Unit
+"#f00"kotlin.Unit
+"color"kotlin.Unit
+"green"kotlin.Unit
+"value"kotlin.Unit
+"#0f0"kotlin.Unit
+"color"kotlin.Unit
+"blue"kotlin.Unit
+"value"kotlin.Unit
+"#00f"kotlin.Unit
+"color"kotlin.Unit
+"white"kotlin.Unit
+"value"kotlin.Unit
+"#fff"kotlin.Unit
+"color"kotlin.Unit
+"black"kotlin.Unit
+"value"kotlin.Unit
+"#000"kotlin.Unit
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

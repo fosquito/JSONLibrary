@@ -37,6 +37,10 @@ class Visitor : VisitorI {
         return o.jsonObject.isNotEmpty()
     }
 
+    /*override fun visit(o: JsonObject) {
+        jsonData.add(o)
+    }*/
+
     override fun visit(s: JsonString) {
         jsonData.add(s)
     }

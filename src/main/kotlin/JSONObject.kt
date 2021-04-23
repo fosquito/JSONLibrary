@@ -18,7 +18,7 @@ class JsonObject : JsonValue() {
             println("{")
             jObj.jsonObject.forEach {
                 for (i in 0..tabs) print("\t")
-                print(it.key+": ")
+                print(it.key.value+": ")
                 when(it.value) {
                     is JsonObject -> printTab(tabs+1, it.value as JsonObject)
                     else -> it.value.print()
@@ -38,7 +38,8 @@ class JsonObject : JsonValue() {
     override fun accept(v: Visitor) {
         if(v.visit(this))
             jsonObject.forEach{
-                //TODO
+                it.key.accept(v)
+                it.value.accept(v)
             }
     }
 }

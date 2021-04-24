@@ -5,7 +5,8 @@ interface VisitorI {
     fun visit(j: Json): Boolean
     fun visit(n: JsonNull)
     fun visit(n: JsonNumber)
-    fun visit(o: JsonObject): Boolean
+    //fun visit(o: JsonObject): Boolean
+    fun visit(o: JsonObject)
     fun visit(s: JsonString)
 }
 
@@ -33,13 +34,13 @@ class Visitor : VisitorI {
         jsonData.add(n)
     }
 
-    override fun visit(o: JsonObject): Boolean {
+    /*override fun visit(o: JsonObject): Boolean {
         return o.jsonObject.isNotEmpty()
-    }
-
-    /*override fun visit(o: JsonObject) {
-        jsonData.add(o)
     }*/
+
+    override fun visit(o: JsonObject) {
+        jsonData.add(o)
+    }
 
     override fun visit(s: JsonString) {
         jsonData.add(s)

@@ -1,15 +1,14 @@
 import org.junit.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 class VisitorTest {
 
     //Json Construction Test
     @Test
     fun test1() {
-        val json: Json = example1()
-        var v: Visitor = Visitor()
-        json.accept(v)
+        val json = example1()
+        val v = Visitor()
+        json.accept(v, JsonString::class)
 
         //json size = 5
         assertEquals(5, v.jsonData.size)
@@ -29,12 +28,14 @@ class VisitorTest {
 
     @Test
     fun test2() {
-        val json: Json = example2()
-        var v: Visitor = Visitor()
+        val json = example2()
+        val v = Visitor()
         json.accept(v)
 
         v.jsonData.forEach {
             it.print()
         }
+        println()
+        //json.print()
     }
 }

@@ -22,9 +22,9 @@ fun example1(): Json{
         value: "#000"
     }*/
 
-    var json: Json = Json()
+    val json = Json()
 
-    var jObject: JsonObject = JsonObject()
+    var jObject = JsonObject()
     jObject.add("color", JsonString("red"))
     jObject.add("value", JsonString("#f00"))
     json.add(jObject)
@@ -95,10 +95,10 @@ fun example2(): Json {
         } ]
     }*/
 
-    var json: Json = Json()
-    var jArray: JsonArray = JsonArray()
-    var jObject1: JsonObject = JsonObject()
-    var jObject2: JsonObject = JsonObject()
+    val json = Json()
+    var jArray = JsonArray()
+    var jObject1 = JsonObject()
+    val jObject2 = JsonObject()
 
     jObject2.add("id", JsonString("0001"))
     jObject2.add("type", JsonString("donut"))
@@ -132,21 +132,6 @@ fun example2(): Json {
     jObject1 = JsonObject()
     jObject1.add("id", JsonString("5002"))
     jObject1.add("type", JsonString("Glazed"))
-    jArray.add(jObject1)
-
-    jObject1 = JsonObject()
-    jObject1.add("id", JsonString("5005"))
-    jObject1.add("type", JsonString("Sugar"))
-    jArray.add(jObject1)
-
-    jObject1 = JsonObject()
-    jObject1.add("id", JsonString("5007"))
-    jObject1.add("type", JsonString("Powered Sugar"))
-    jArray.add(jObject1)
-
-    jObject1 = JsonObject()
-    jObject1.add("id", JsonString("5006"))
-    jObject1.add("type", JsonString("Chocolate with Sprinkles"))
     jArray.add(jObject1)
 
     jObject2.add("topping", jArray)

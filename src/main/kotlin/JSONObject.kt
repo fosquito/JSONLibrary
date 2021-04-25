@@ -7,14 +7,14 @@ class JsonObject : JsonValue() {
         jsonObject[key] = value
     }
 
-    fun getValue(key: JsonString): JsonValue? {
+    fun getValue(key: String): JsonValue? {
         return jsonObject[key]
     }
 
     override fun print() {
 
         fun printTab(tabs: Int, jObj: JsonObject){
-            var counter: Int = 1
+            var counter = 1
             println("{")
             jObj.jsonObject.forEach {
                 for (i in 0..tabs) print("\t")
@@ -35,12 +35,12 @@ class JsonObject : JsonValue() {
         printTab(0, this)
     }
 
-    override fun accept(v: Visitor) {
-        /*if(v.visit(this))
+    override fun accept(v: Visitor, jClass: Any?) {
+        if(v.visit(this, jClass))
             jsonObject.forEach{
-                it.key.accept(v)
-                it.value.accept(v)
-            }*/
-        v.visit(this)
+                if(it.value is JsonObject || it.value is JsonArray)
+                    it.value.accept(v, jClass)
+            }
+        //v.visit(this)
     }
 }

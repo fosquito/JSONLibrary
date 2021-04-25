@@ -1,8 +1,8 @@
 
 fun main() {
-    var json: Json = Json()
+    val json = Json()
 
-    var jObject: JsonObject = JsonObject()
+    var jObject = JsonObject()
     jObject.add("color", JsonString("red"))
     jObject.add("value", JsonString("#f00"))
     json.add(jObject)

@@ -1,48 +1,56 @@
 interface VisitorI {
 
-    fun visit(a: JsonArray)
-    fun visit(b: JsonBoolean)
-    fun visit(j: Json): Boolean
-    fun visit(n: JsonNull)
-    fun visit(n: JsonNumber)
-    //fun visit(o: JsonObject): Boolean
-    fun visit(o: JsonObject)
-    fun visit(s: JsonString)
+    fun visit(array: JsonArray, jClass: Any?)
+    fun visit(bool: JsonBoolean, jClass: Any?)
+    fun visit(json: Json, jClass: Any?): Boolean
+    fun visit(n: JsonNull, jClass: Any?)
+    fun visit(num: JsonNumber, jClass: Any?)
+    fun visit(obj: JsonObject, jClass: Any?): Boolean
+    //fun visit(o: JsonObject)
+    fun visit(str: JsonString, jClass: Any?)
 }
 
 class Visitor : VisitorI {
 
     var jsonData: MutableList<JsonValue> = mutableListOf()
 
-    override fun visit(a: JsonArray) {
-        jsonData.add(a)
+    override fun visit(array: JsonArray, jClass: Any?) {
+        if (jClass is JsonArray)
+            jsonData.add(array)
     }
 
-    override fun visit(b: JsonBoolean) {
-        jsonData.add(b)
+    override fun visit(bool: JsonBoolean, jClass: Any?) {
+        if(jClass is JsonBoolean)
+            jsonData.add(bool)
     }
 
-    override fun visit(j: Json): Boolean {
-        return j.elements.isNotEmpty()
+    override fun visit(json: Json, jClass: Any?): Boolean {
+        return json.elements.isNotEmpty()
     }
 
-    override fun visit(n: JsonNull) {
-        jsonData.add(n)
+    override fun visit(n: JsonNull, jClass: Any?) {
+        if(jClass is JsonNull)
+            jsonData.add(n)
     }
 
-    override fun visit(n: JsonNumber) {
-        jsonData.add(n)
+    override fun visit(num: JsonNumber, jClass: Any?) {
+        jsonData.add(num)
     }
 
-    /*override fun visit(o: JsonObject): Boolean {
-        return o.jsonObject.isNotEmpty()
+    override fun visit(obj: JsonObject, jClass: Any?): Boolean {
+        if (obj.jsonObject.isEmpty())
+            return false
+        if(jClass == obj.javaClass.kotlin)
+            jsonData.add(obj)
+        return true
+    }
+
+    /*override fun visit(o: JsonObject) {
+        jsonData.add(o)
     }*/
 
-    override fun visit(o: JsonObject) {
-        jsonData.add(o)
-    }
-
-    override fun visit(s: JsonString) {
-        jsonData.add(s)
+    override fun visit(str: JsonString, jClass: Any?) {
+        if (jClass is JsonString)
+            jsonData.add(str)
     }
 }

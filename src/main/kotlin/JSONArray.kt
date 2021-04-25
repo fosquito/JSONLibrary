@@ -1,7 +1,7 @@
 
-class JsonArray() : JsonValue() {
+class JsonArray : JsonValue() {
 
-    var value: MutableList<JsonValue> = mutableListOf()
+    private var value: MutableList<JsonValue> = mutableListOf()
 
     fun add(element: JsonValue) {
         value.add(element)
@@ -9,7 +9,7 @@ class JsonArray() : JsonValue() {
 
     override fun print() {
         print("[")
-        var counter: Int = 1
+        var counter = 1
         value.forEach {
             it.print()
             if(counter++ != value.size)
@@ -18,7 +18,7 @@ class JsonArray() : JsonValue() {
         print("]")
     }
 
-    override fun accept(v: Visitor) {
-        v.visit(this)
+    override fun accept(v: Visitor, jClass: Any?) {
+        v.visit(this, jClass)
     }
 }

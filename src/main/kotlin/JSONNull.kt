@@ -5,7 +5,7 @@ class JsonNull : JsonValue() {
         print("Null")
     }
 
-    override fun accept(v: Visitor) {
-        v.visit(this)
+    override fun accept(v: Visitor, jClass: Any?) {
+        v.visit(this, jClass)
     }
 }

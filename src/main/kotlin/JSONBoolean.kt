@@ -5,7 +5,7 @@ data class JsonBoolean(var value: Boolean) : JsonValue() {
         print(value)
     }
 
-    override fun accept(v: Visitor) {
-        v.visit(this)
+    override fun accept(v: Visitor, jClass: Any?) {
+        v.visit(this, jClass)
     }
 }

@@ -1,3 +1,4 @@
+import kotlin.reflect.KClass
 
 class Json {
 
@@ -7,10 +8,10 @@ class Json {
         elements.add(element)
     }
 
-    fun accept(v: Visitor, jClass: Any? = null) {
+    fun accept(v: Visitor, jClass: KClass<Any>? = null) {
         if(v.visit(this, jClass))
             elements.forEach {
-                it.accept(v)
+                it.accept(v, jClass)
             }
     }
 

@@ -1,7 +1,16 @@
+import kotlin.reflect.KClass
 
 class JsonArray : JsonValue() {
 
     private var value: MutableList<JsonValue> = mutableListOf()
+
+    override fun valueToString(): String {
+        var str = ""
+        value.forEach {
+            str += it.valueToString()+", "
+        }
+        return str.dropLast(2)
+    }
 
     fun add(element: JsonValue) {
         value.add(element)
@@ -16,9 +25,5 @@ class JsonArray : JsonValue() {
                 print(", ")
         }
         print("]")
-    }
-
-    override fun accept(v: Visitor, jClass: Any?) {
-        v.visit(this, jClass)
     }
 }

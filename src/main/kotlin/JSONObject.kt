@@ -1,14 +1,15 @@
+import kotlin.reflect.KClass
 
 class JsonObject : JsonValue() {
 
-    var jsonObject: MutableMap<String, JsonValue> = mutableMapOf()
+    var jsonObject: MutableList<JsonMap> = mutableListOf()
 
     fun add (key: String, value: JsonValue) {
-        jsonObject[key] = value
+        jsonObject.add(JsonMap(key, value))
     }
 
-    fun getValue(key: String): JsonValue? {
-        return jsonObject[key]
+    override fun valueToString(): String {
+        TODO("Not yet implemented")
     }
 
     override fun print() {
@@ -18,11 +19,7 @@ class JsonObject : JsonValue() {
             println("{")
             jObj.jsonObject.forEach {
                 for (i in 0..tabs) print("\t")
-                print("\""+it.key+"\": ")
-                when(it.value) {
-                    is JsonObject -> printTab(tabs+1, it.value as JsonObject)
-                    else -> it.value.print()
-                }
+                it.print()
                 if(counter++ != jObj.jsonObject.size)
                     println(", ")
                 else
@@ -35,12 +32,7 @@ class JsonObject : JsonValue() {
         printTab(0, this)
     }
 
-    override fun accept(v: Visitor, jClass: Any?) {
-        if(v.visit(this, jClass))
-            jsonObject.forEach{
-                if(it.value is JsonObject || it.value is JsonArray)
-                    it.value.accept(v, jClass)
-            }
-        //v.visit(this)
+    override fun <T: Any> accept(v: Visitor, jClass: KClass<T>?) {
+        v.visit(this, jClass)
     }
 }

@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-26T16:08:19" hostname="FOSQUITOMIGAMIN" time="0.01">
+<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-27T18:46:29" hostname="FOSQUITOMIGAMIN" time="0.013">
   <properties/>
-  <testcase name="test1" classname="VisitorTest" time="0.01"/>
+  <testcase name="test1" classname="VisitorTest" time="0.013"/>
   <system-out><![CDATA[{
-	color: red, 
-	value: #f00
+	"color": "red", 
+	"value": "#f00"
 }
 {
-	color: green, 
-	value: #0f0
+	"color": "green", 
+	"value": "#0f0"
 }
 {
-	color: blue, 
-	value: #00f
+	"color": "blue", 
+	"value": "#00f"
 }
 {
-	color: white, 
-	value: #fff
+	"color": "white", 
+	"value": "#fff"
 }
 {
-	color: black, 
-	value: #000
+	"color": "black", 
+	"value": "#000"
 }
+{
+	"color": "red", 
+	"value": "#f00"
+}
+"color": "red"
+"value": "#f00"
+{
+	"color": "green", 
+	"value": "#0f0"
+}
+"color": "green"
+"value": "#0f0"
+{
+	"color": "blue", 
+	"value": "#00f"
+}
+"color": "blue"
+"value": "#00f"
+{
+	"color": "white", 
+	"value": "#fff"
+}
+"color": "white"
+"value": "#fff"
+{
+	"color": "black", 
+	"value": "#000"
+}
+"color": "black"
+"value": "#000"
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

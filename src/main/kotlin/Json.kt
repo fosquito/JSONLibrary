@@ -8,7 +8,7 @@ class Json {
         elements.add(element)
     }
 
-    fun accept(v: Visitor, jClass: KClass<Any>? = null) {
+    fun accept(v: Visitor, jClass: KClass<*>? = null) {
         if(v.visit(this, jClass))
             elements.forEach {
                 it.accept(v, jClass)

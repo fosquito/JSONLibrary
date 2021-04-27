@@ -16,7 +16,8 @@ class Visitor : VisitorI {
 
     override fun <T: Any> visit(obj: JsonObject, jClass: KClass<T>?) {
         if (obj.jsonObject.isEmpty()) return
-        jsonData.add(obj)
+        if(obj.javaClass.name.equals(jClass?.simpleName) || jClass == null)
+            jsonData.add(obj)
         obj.jsonObject.forEach{
             visit(it.value, jClass, it.key)
         }
@@ -29,7 +30,7 @@ class Visitor : VisitorI {
         }
         else{
             if(j.javaClass.name.equals(jClass?.simpleName) || jClass == null)
-                jsonData.add(JsonString(key+": "+j.valueToString()))
+                jsonData.add(JsonMap(key, j))
         }
         if(j is JsonObject || j is JsonArray)
             j.accept(this, jClass)

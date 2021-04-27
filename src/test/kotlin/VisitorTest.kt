@@ -11,10 +11,10 @@ class VisitorTest {
 
         json.print()
 
-        /*v.jsonData.forEach {
+        v.jsonData.forEach {
             it.print()
             println()
-        }*/
+        }
     }
 
     @Test

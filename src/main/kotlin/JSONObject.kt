@@ -9,7 +9,11 @@ class JsonObject : JsonValue() {
     }
 
     override fun valueToString(): String {
-        TODO("Not yet implemented")
+        var str = ""
+        jsonObject.forEach {
+            str += it.value.valueToString()+", "
+        }
+        return str.dropLast(2)
     }
 
     override fun print() {

@@ -1,7 +1,7 @@
 
 class JsonMap(val key: String, val value: JsonValue) : JsonValue() {
     override fun valueToString(): String {
-        TODO("Not yet implemented")
+        return value.valueToString()
     }
 
     override fun print() {

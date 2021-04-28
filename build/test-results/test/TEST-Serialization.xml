@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Serialization" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-28T14:42:02" hostname="FOSQUITOMIGAMIN" time="0.026">
+  <properties/>
+  <testcase name="test02" classname="Serialization" time="0.026"/>
+  <system-out><![CDATA[{
+	"id": "0001", 
+	"type": "donut", 
+	"name": "Cake", 
+	"ppu": 0.55, 
+	"batters": {
+		"batter": [
+			{
+				"id": "1001", 
+				"type": "Regular"
+			}, 			{
+				"id": "1002", 
+				"type": "Chocolate"
+			}, 			{
+				"id": "1003", 
+				"type": "Blueberry"
+			}
+		]
+	}, 
+	"topping": [
+		{
+			"id": "5001", 
+			"type": "None"
+		}, 		{
+			"id": "5002", 
+			"type": "Glazed"
+		}
+	]
+}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -2,7 +2,7 @@ import kotlin.reflect.KClass
 
 data class JsonString(var value: String) : JsonValue() {
 
-    override fun valueToString(): String {
+    override fun getValue(): Any? {
         return "\""+value+"\""
     }
 

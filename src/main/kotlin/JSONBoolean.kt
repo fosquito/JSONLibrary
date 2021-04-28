@@ -2,8 +2,8 @@ import kotlin.reflect.KClass
 
 data class JsonBoolean(var value: Boolean) : JsonValue() {
 
-    override fun valueToString(): String {
-        return value.toString()
+    override fun getValue(): Boolean {
+        return value
     }
 
     override fun print(ident: Int) {

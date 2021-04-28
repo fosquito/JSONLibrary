@@ -14,13 +14,13 @@ class Search {
         //jsonData size = 15
         assertEquals(15, v.jsonData.size)
         //first element values = "red", "#f00"
-        assertEquals("\"red\", \"#f00\"", v.jsonData[0].valueToString())
+        assertEquals("\"red\", \"#f00\"", v.jsonData[0].getValue())
         //second element value = "red"
-        assertEquals("\"red\"", v.jsonData[1].valueToString())
+        assertEquals("\"red\"", v.jsonData[1].getValue())
         //third element value = "#f00"
-        assertEquals("\"#f00\"", v.jsonData[2].valueToString())
+        assertEquals("\"#f00\"", v.jsonData[2].getValue())
         //fourth element values = "green", "#0f0"
-        assertEquals("\"green\", \"#0f0\"", v.jsonData[3].valueToString())
+        assertEquals("\"green\", \"#0f0\"", v.jsonData[3].getValue())
 
         v.jsonData.forEach {
             it.print()
@@ -39,11 +39,11 @@ class Search {
         //jsonData size = 10
         assertEquals(10, v.jsonData.size)
         //first element value = "red"
-        assertEquals("\"red\"", v.jsonData[0].valueToString())
+        assertEquals("\"red\"", v.jsonData[0].getValue())
         //second element value = "#f00"
-        assertEquals("\"#f00\"", v.jsonData[1].valueToString())
+        assertEquals("\"#f00\"", v.jsonData[1].getValue())
         //third element values = "green"
-        assertEquals("\"green\"", v.jsonData[2].valueToString())
+        assertEquals("\"green\"", v.jsonData[2].getValue())
 
         v.jsonData.forEach {
             it.print()
@@ -62,7 +62,7 @@ class Search {
         //jsonData size = 1
         assertEquals(1, v.jsonData.size)
         //first element value = 0.55
-        assertEquals("0.55", v.jsonData[0].valueToString())
+        assertEquals(0.55, v.jsonData[0].getValue())
 
         v.jsonData.forEach {
             it.print()

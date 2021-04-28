@@ -2,8 +2,8 @@ import kotlin.reflect.KClass
 
 class JsonNull : JsonValue() {
 
-    override fun valueToString(): String {
-        return "Null"
+    override fun getValue(): Any? {
+        return null
     }
 
     override fun print(ident: Int) {

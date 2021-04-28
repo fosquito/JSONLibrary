@@ -8,10 +8,10 @@ class JsonObject : JsonValue() {
         jsonObject.add(JsonMap(key, value))
     }
 
-    override fun valueToString(): String {
+    override fun getValue(): String {
         var str = ""
         jsonObject.forEach {
-            str += it.value.valueToString()+", "
+            str += it.value.getValue().toString()+", "
         }
         return str.dropLast(2)
     }

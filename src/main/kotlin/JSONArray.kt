@@ -4,10 +4,10 @@ class JsonArray : JsonValue() {
 
     var value: MutableList<JsonValue> = mutableListOf()
 
-    override fun valueToString(): String {
+    override fun getValue(): String {
         var str = ""
         value.forEach {
-            str += it.valueToString()+", "
+            str += it.getValue().toString()+", "
         }
         return str.dropLast(2)
     }

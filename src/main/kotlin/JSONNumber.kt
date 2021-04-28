@@ -6,7 +6,7 @@ data class JsonNumber(var value: Number) : JsonValue() {
         return value.toString()
     }
 
-    override fun print() {
+    override fun print(ident: Int) {
         print(value)
     }
 }

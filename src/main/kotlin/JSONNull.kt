@@ -6,7 +6,7 @@ class JsonNull : JsonValue() {
         return "Null"
     }
 
-    override fun print() {
+    override fun print(ident: Int) {
         print("Null")
     }
 }

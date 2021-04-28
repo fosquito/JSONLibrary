@@ -6,7 +6,7 @@ data class JsonBoolean(var value: Boolean) : JsonValue() {
         return value.toString()
     }
 
-    override fun print() {
+    override fun print(ident: Int) {
         print(value)
     }
 }

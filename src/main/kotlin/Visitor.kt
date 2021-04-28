@@ -32,7 +32,15 @@ class Visitor : VisitorI {
             if(j.javaClass.name.equals(jClass?.simpleName) || jClass == null)
                 jsonData.add(JsonMap(key, j))
         }
-        if(j is JsonObject || j is JsonArray)
+        if(j is JsonObject)
             j.accept(this, jClass)
+        if(j is JsonArray) {
+            val jArr: JsonArray = j as JsonArray
+            jArr.value.forEach {
+                if(it is JsonArray || it is JsonObject)
+                    it.accept(this, jClass)
+            }
+        }
+
     }
 }

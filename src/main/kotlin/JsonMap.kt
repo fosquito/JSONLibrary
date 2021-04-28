@@ -4,8 +4,9 @@ class JsonMap(val key: String, val value: JsonValue) : JsonValue() {
         return value.valueToString()
     }
 
-    override fun print() {
-        print("\""+key+"\": "+value.valueToString())
+    override fun print(ident: Int) {
+        print("\"$key\": ")
+        value.print(ident)
     }
 
 }

@@ -16,24 +16,20 @@ class JsonObject : JsonValue() {
         return str.dropLast(2)
     }
 
-    override fun print() {
+    override fun print(ident: Int) {
 
-        fun printTab(tabs: Int, jObj: JsonObject){
-            var counter = 1
-            println("{")
-            jObj.jsonObject.forEach {
-                for (i in 0..tabs) print("\t")
-                it.print()
-                if(counter++ != jObj.jsonObject.size)
-                    println(", ")
-                else
-                    println()
-            }
-            for (i in 1..tabs) print("\t")
-            print("}")
+        var counter = 1
+        println("{")
+        jsonObject.forEach {
+            for (i in 0..ident) print("\t")
+            it.print(ident+1)
+            if(counter++ != jsonObject.size)
+                println(", ")
+            else
+                println()
         }
-
-        printTab(0, this)
+        for (i in 1..ident) print("\t")
+        print("}")
     }
 
     override fun <T: Any> accept(v: Visitor, jClass: KClass<T>?) {

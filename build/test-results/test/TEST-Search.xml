@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Search" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-28T14:13:06" hostname="FOSQUITOMIGAMIN" time="0.053">
+  <properties/>
+  <testcase name="test04" classname="Search" time="0.053"/>
+  <system-out><![CDATA["batter": [
+	{
+		"id": "1001", 
+		"type": "Regular"
+	}, 	{
+		"id": "1002", 
+		"type": "Chocolate"
+	}, 	{
+		"id": "1003", 
+		"type": "Blueberry"
+	}
+]
+"topping": [
+	{
+		"id": "5001", 
+		"type": "None"
+	}, 	{
+		"id": "5002", 
+		"type": "Glazed"
+	}
+]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

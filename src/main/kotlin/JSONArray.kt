@@ -2,7 +2,7 @@ import kotlin.reflect.KClass
 
 class JsonArray : JsonValue() {
 
-    private var value: MutableList<JsonValue> = mutableListOf()
+    var value: MutableList<JsonValue> = mutableListOf()
 
     override fun valueToString(): String {
         var str = ""
@@ -16,14 +16,18 @@ class JsonArray : JsonValue() {
         value.add(element)
     }
 
-    override fun print() {
-        print("[")
+    override fun print(ident: Int) {
+        println("[")
         var counter = 1
         value.forEach {
-            it.print()
+            for (i in 0..ident) print("\t")
+            it.print(ident+1)
             if(counter++ != value.size)
                 print(", ")
+            else
+                println()
         }
+        for (i in 1..ident) print("\t")
         print("]")
     }
 }

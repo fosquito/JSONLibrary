@@ -6,7 +6,7 @@ data class JsonString(var value: String) : JsonValue() {
         return "\""+value+"\""
     }
 
-    override fun print() {
+    override fun print(ident: Int) {
         print("\""+value+"\"")
     }
 }

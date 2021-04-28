@@ -1,44 +1,27 @@
 import kotlin.reflect.KClass
 
 interface VisitorI {
-    fun <T: Any> visit(json: Json, jClass: KClass<T>?): Boolean
-    fun <T: Any> visit(obj: JsonObject, jClass: KClass<T>?)
-    fun <T: Any> visit(j: JsonValue, jClass: KClass<T>?, key: String? = null)
+    fun visit(json: Json): Boolean
+    fun visit(j: JsonValue)
 }
 
 class Visitor : VisitorI {
 
     var jsonData: MutableList<JsonValue> = mutableListOf()
 
-    override fun <T: Any> visit(json: Json, jClass: KClass<T>?): Boolean {
+    override fun visit(json: Json): Boolean {
         return json.elements.isNotEmpty()
     }
 
-    override fun <T: Any> visit(obj: JsonObject, jClass: KClass<T>?) {
-        if (obj.jsonObject.isEmpty()) return
-        if(obj.javaClass.name.equals(jClass?.simpleName) || jClass == null)
-            jsonData.add(obj)
-        obj.jsonObject.forEach{
-            visit(it.value, jClass, it.key)
-        }
-    }
-
-    override fun <T: Any> visit(j: JsonValue, jClass: KClass<T>?, key: String?) {
-        if(key == null) {
-            if (j.javaClass.name.equals(jClass?.simpleName) || jClass == null)
-                jsonData.add(j)
-        }
-        else{
-            if(j.javaClass.name.equals(jClass?.simpleName) || jClass == null)
-                jsonData.add(JsonMap(key, j))
-        }
+    override fun visit(j: JsonValue) {
+        jsonData.add(j)
         if(j is JsonObject)
-            j.accept(this, jClass)
+            j.accept(this)
         if(j is JsonArray) {
             val jArr: JsonArray = j as JsonArray
             jArr.value.forEach {
                 if(it is JsonArray || it is JsonObject)
-                    it.accept(this, jClass)
+                    it.accept(this)
             }
         }
 

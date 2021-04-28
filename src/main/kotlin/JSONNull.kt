@@ -1,4 +1,3 @@
-import kotlin.reflect.KClass
 
 class JsonNull : JsonValue() {
 

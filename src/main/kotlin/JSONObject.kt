@@ -1,4 +1,3 @@
-import kotlin.reflect.KClass
 
 class JsonObject : JsonValue() {
 
@@ -30,9 +29,5 @@ class JsonObject : JsonValue() {
         }
         for (i in 1..ident) print("\t")
         print("}")
-    }
-
-    override fun <T: Any> accept(v: Visitor, jClass: KClass<T>?) {
-        v.visit(this, jClass)
     }
 }

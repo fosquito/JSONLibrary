@@ -1,4 +1,3 @@
-import kotlin.reflect.KClass
 
 data class JsonBoolean(var value: Boolean) : JsonValue() {
 

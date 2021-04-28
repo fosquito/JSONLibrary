@@ -34,7 +34,7 @@ class Search {
         val v = Visitor()
 
         //Search JsonString elements
-        json.accept(v, JsonString::class)
+        json.accept(v)
 
         //jsonData size = 10
         assertEquals(10, v.jsonData.size)
@@ -57,7 +57,7 @@ class Search {
         val v = Visitor()
 
         //Search JsonNumber elements
-        json.accept(v, JsonNumber::class)
+        json.accept(v)
 
         //jsonData size = 1
         assertEquals(1, v.jsonData.size)
@@ -76,7 +76,7 @@ class Search {
         val v = Visitor()
 
         //Search JsonArray elements
-        json.accept(v, JsonArray::class)
+        json.accept(v)
 
         //jsonData size = 2
         assertEquals(2, v.jsonData.size)

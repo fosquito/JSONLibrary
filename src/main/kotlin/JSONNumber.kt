@@ -5,8 +5,4 @@ data class JsonNumber(var value: Number) : JsonValue() {
         return value
     }
 
-
-    override fun print(ident: Int) {
-        print(value)
-    }
 }

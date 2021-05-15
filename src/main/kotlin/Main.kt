@@ -1,10 +1,9 @@
 import kotlin.reflect.KClass
 
 fun main() {
-    var a = teste()
-    a.add("um")
-    a.add("2")
-    var j = Json(a)
+    var j = Json(5)
+    var visitor = Serialize()
+    j.json.accept(visitor)
 }
 
 class teste {

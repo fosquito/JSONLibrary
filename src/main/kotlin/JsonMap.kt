@@ -2,12 +2,11 @@
 class JsonMap(private val key: String, val value: JsonValue) : JsonValue() {
 
     override fun getValue(): Any? {
-        return value.getValue()
+        return value
     }
 
-    override fun print(ident: Int) {
-        print("\"$key\": ")
-        value.print(ident)
+    fun getKey(): String {
+        return "\""+key+"\""
     }
 
 }

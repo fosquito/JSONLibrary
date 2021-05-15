@@ -4,6 +4,10 @@ class JsonObject : JsonValue() {
 
     var jsonObject: MutableList<JsonMap> = mutableListOf()
 
+    fun isLast(element: JsonMap): Boolean {
+        return element == jsonObject.last()
+    }
+
     fun add (element: Any) {
         element::class.memberProperties.forEach {
             if(it == null){
@@ -20,7 +24,12 @@ class JsonObject : JsonValue() {
             else if (it.returnType.classifier == String::class){
                 jsonObject.add(JsonMap(it.name, JsonString(it.getter.call(element) as String)))
             }
-            else if (it.returnType.classifier == Number::class){
+            else if (it.returnType.classifier == Number::class
+                || it.returnType.classifier == Int::class
+                || it.returnType.classifier == Double::class
+                || it.returnType.classifier == Float::class
+                || it.returnType.classifier == Long::class
+                || it.returnType.classifier == Short::class){
                 jsonObject.add(JsonMap(it.name, JsonNumber(it.getter.call(element) as Number)))
             }
             else if (it.returnType.classifier == Boolean::class){
@@ -42,19 +51,7 @@ class JsonObject : JsonValue() {
         return str.dropLast(2)
     }
 
-    override fun print(ident: Int) {
-
-        var counter = 1
-        println("{")
-        jsonObject.forEach {
-            for (i in 0..ident) print("\t")
-            it.print(ident+1)
-            if(counter++ != jsonObject.size)
-                println(", ")
-            else
-                println()
-        }
-        for (i in 1..ident) print("\t")
-        print("}")
+    override fun accept(v: Visitor) {
+        v.visit(this)
     }
 }

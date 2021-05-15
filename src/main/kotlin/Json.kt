@@ -20,8 +20,8 @@ class Json {
             is String -> {
                 json = JsonString(j)
             }
-            is Number -> {
-                json = JsonNumber(j)
+            is Number, Int, Double, Float, Long, Short -> {
+                json = JsonNumber(j as Number)
             }
             is Boolean -> {
                 json = JsonBoolean(j)

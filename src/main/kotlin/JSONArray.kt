@@ -1,8 +1,10 @@
-import kotlin.reflect.full.memberProperties
-
 class JsonArray : JsonValue() {
 
     var value: MutableList<JsonValue> = mutableListOf()
+
+    fun isLast(element: JsonValue): Boolean {
+        return element == value.last()
+    }
 
     override fun getValue(): String {
         var str = ""
@@ -28,8 +30,8 @@ class JsonArray : JsonValue() {
             is String -> {
                 value.add(JsonString(element))
             }
-            is Number -> {
-                value.add(JsonNumber(element))
+            is Number, Int, Double, Float, Long, Short -> {
+                value.add(JsonNumber(element as Number))
             }
             is Boolean -> {
                 value.add(JsonBoolean(element))
@@ -42,18 +44,7 @@ class JsonArray : JsonValue() {
         }
     }
 
-    override fun print(ident: Int) {
-        println("[")
-        var counter = 1
-        value.forEach {
-            for (i in 0..ident) print("\t")
-            it.print(ident+1)
-            if(counter++ != value.size)
-                print(", ")
-            else
-                println()
-        }
-        for (i in 1..ident) print("\t")
-        print("]")
+    override fun accept(v: Visitor) {
+        v.visit(this)
     }
 }

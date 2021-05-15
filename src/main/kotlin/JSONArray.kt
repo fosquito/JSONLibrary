@@ -1,3 +1,4 @@
+import kotlin.reflect.full.memberProperties
 
 class JsonArray : JsonValue() {
 
@@ -11,8 +12,34 @@ class JsonArray : JsonValue() {
         return str.dropLast(2)
     }
 
-    fun add(element: JsonValue) {
-        value.add(element)
+    fun add(element: Any?) {
+        if(element == null){
+            value.add(JsonNull())
+            return
+        }
+        when(element) {
+            is List<*> -> {
+                var jArray = JsonArray()
+                element.forEach {
+                    jArray.add(it)
+                }
+                value.add(jArray)
+            }
+            is String -> {
+                value.add(JsonString(element))
+            }
+            is Number -> {
+                value.add(JsonNumber(element))
+            }
+            is Boolean -> {
+                value.add(JsonBoolean(element))
+            }
+            else -> {
+                var jObject = JsonObject()
+                jObject.add(element)
+                value.add(jObject)
+            }
+        }
     }
 
     override fun print(ident: Int) {

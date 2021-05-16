@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JsonSearch" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-15T17:30:09" hostname="FOSQUITOMIGAMIN" time="0.332">
+<testsuite name="JsonSearch" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-16T18:56:30" hostname="FOSQUITOMIGAMIN" time="0.347">
   <properties/>
-  <testcase name="test01" classname="JsonSearch" time="0.332"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="test02" classname="JsonSearch" time="0.347"/>
+  <system-out><![CDATA["topping": [{
+"id": 5001,
+"type": "None"
+}
+, {
+"id": 5002,
+"type": "Glazed"
+}
+, {
+"id": 5005,
+"type": "Sugar"
+}
+, {
+"id": 5007,
+"type": "Powered Sugar"
+}
+]
+
+"type": "Sugar"
+"type": "Powered Sugar"
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

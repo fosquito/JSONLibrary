@@ -1,6 +1,7 @@
 
 interface Visitor {
     fun visit(j: JsonObject)
+    fun visit(j: JsonMap)
     fun visit(j: JsonArray)
     fun visit(j: JsonValue)
 }
@@ -10,13 +11,17 @@ class Serialize : Visitor {
     override fun visit(j: JsonObject) {
         println("{")
         j.jsonObject.forEach {
-            print(it.getKey()+": ")
-            it.value.accept(this)
+            it.accept(this)
             if(!j.isLast(it))
                 println(",")
         }
         println()
         println("}")
+    }
+
+    override fun visit(j: JsonMap) {
+        print(j.getKey()+": ")
+        j.value.accept(this)
     }
 
     override fun visit(j: JsonArray) {
@@ -34,20 +39,35 @@ class Serialize : Visitor {
     }
 }
 
-class Search : Visitor {
+class Search(var text: String) : Visitor {
 
     var searchResponse: MutableList<JsonValue> = mutableListOf()
 
     override fun visit(j: JsonObject) {
-        searchResponse.add(j)
+        j.jsonObject.forEach {
+            it.accept(this)
+        }
+    }
+
+    override fun visit(j: JsonMap) {
+        if (j.getKey().contains(text) || j.value.getValue().toString().contains(text)){
+            searchResponse.add(j)
+        }
+        if(j.value is JsonObject || j.value is JsonArray){
+            j.value.accept(this)
+        }
     }
 
     override fun visit(j: JsonArray) {
-        searchResponse.add(j)
+        j.value.forEach {
+            it.accept(this)
+        }
     }
 
     override fun visit(j: JsonValue) {
-        searchResponse.add(j)
+        if(j.getValue().toString().contains(text)){
+            searchResponse.add(j)
+        }
     }
 
 }

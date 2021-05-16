@@ -9,4 +9,7 @@ class JsonMap(private val key: String, val value: JsonValue) : JsonValue() {
         return "\""+key+"\""
     }
 
+    override fun accept(v: Visitor) {
+        v.visit(this)
+    }
 }

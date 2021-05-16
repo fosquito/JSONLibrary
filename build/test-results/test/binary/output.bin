@@ -1,0 +1,20 @@
+"topping": [{
+"id": 5001,
+"type": "None"
+}
+, {
+"id": 5002,
+"type": "Glazed"
+}
+, {
+"id": 5005,
+"type": "Sugar"
+}
+, {
+"id": 5007,
+"type": "Powered Sugar"
+}
+]
+
+"type": "Sugar"
+"type": "Powered Sugar"

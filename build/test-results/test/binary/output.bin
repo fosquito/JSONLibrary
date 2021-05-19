@@ -1,20 +1,13 @@
-"topping": [{
-"id": 5001,
-"type": "None"
+{
+
+"dad": {
+"dad": null,
+"isMale": true,
+"name": "Tom",
+"weight": 4.57
 }
-, {
-"id": 5002,
-"type": "Glazed"
+,
+"isMale": false,
+"name": "Mary",
+"weight": 3.61
 }
-, {
-"id": 5005,
-"type": "Sugar"
-}
-, {
-"id": 5007,
-"type": "Powered Sugar"
-}
-]
-
-"type": "Sugar"
-"type": "Powered Sugar"

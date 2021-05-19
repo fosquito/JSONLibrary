@@ -1,4 +1,8 @@
+import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.memberProperties
+
+@Target(AnnotationTarget.PROPERTY)
+annotation class Ignore
 
 class JsonObject : JsonValue() {
 
@@ -10,7 +14,10 @@ class JsonObject : JsonValue() {
 
     fun add (element: Any) {
         element::class.memberProperties.forEach {
-            if(it == null){
+            if(it.hasAnnotation<Ignore>()){
+
+            }
+            else if(it.getter.call(element) == null){
                 jsonObject.add(JsonMap(it.name, JsonNull()))
             }
             else if (it.returnType.classifier == List::class){
@@ -34,6 +41,11 @@ class JsonObject : JsonValue() {
             }
             else if (it.returnType.classifier == Boolean::class){
                 jsonObject.add(JsonMap(it.name, JsonBoolean(it.getter.call(element) as Boolean)))
+            }
+            else if (it.returnType.classifier == Map::class){
+                var map: Map<*, Any?> = it.getter.call(element) as Map<*, Any?>
+                var j = Json(null)
+                jsonObject.add(JsonMap(it.name, JsonMap(map.entries.firstOrNull()?.key.toString(), j.getMapValue(map.entries.firstOrNull()?.value))))
             }
             else {
                 var jObject = JsonObject()

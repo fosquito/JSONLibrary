@@ -36,6 +36,10 @@ class JsonArray : JsonValue() {
             is Boolean -> {
                 value.add(JsonBoolean(element))
             }
+            is Map<*, Any?> -> {
+                var j = Json(null)
+                value.add(JsonMap(element.entries.firstOrNull().toString(), j.getMapValue(element.entries.firstOrNull()?.value)))
+            }
             else -> {
                 var jObject = JsonObject()
                 jObject.add(element)

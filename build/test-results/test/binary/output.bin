@@ -1,13 +1,6 @@
-{
-
-"dad": {
-"dad": null,
-"isMale": true,
-"name": "Tom",
-"weight": 4.57
-}
-,
-"isMale": false,
-"name": "Mary",
-"weight": 3.61
-}
+"color": "red"
+"value": "#f00"
+"color": "green"
+"value": "#0f0"
+"color": "blue"
+"value": "#00f"

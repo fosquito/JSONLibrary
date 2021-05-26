@@ -4,20 +4,25 @@ import org.eclipse.swt.events.SelectionEvent
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.layout.GridLayout
+import org.eclipse.swt.layout.RowLayout
 import org.eclipse.swt.widgets.*
 
-class JsonTreeSkeleton(json: Json) {
+class JsonTreeSkeleton() {
     private val shell: Shell = Shell(Display.getDefault())
-    val tree: Tree
-    lateinit var composite: Composite
+    @Inject
+    lateinit var setup: FrameSetup
+    lateinit var tree: Tree
 
-    init {
-        //shell.setSize(500, 500)
-        shell.text = "Json tree skeleton"
-        shell.layout = GridLayout(2,false)
-        tree = Tree(shell, SWT.SINGLE or SWT.BORDER)
+    private fun treeConstructor(json: Json) {
+        shell.text = setup.text
+        shell.layout = GridLayout(1,false)
 
-        fun treeConstructor(j: JsonValue, dad: TreeItem? = null){
+        var outerGroup = Group(shell, SWT.NONE)
+        outerGroup.layoutData = GridData(SWT.FILL, SWT.FILL, true, true)
+        outerGroup.layout = setup.gridLayout
+
+        tree = Tree(outerGroup, SWT.SINGLE or SWT.BORDER)
+        fun tConstruct(j: JsonValue, dad: TreeItem? = null){
             val a: TreeItem = if(dad == null)
                 TreeItem(tree, SWT.NONE)
             else
@@ -27,7 +32,7 @@ class JsonTreeSkeleton(json: Json) {
                 is JsonArray -> {
                     a.text = "(array)"
                     j.value.forEach {
-                       treeConstructor(it, a)
+                        tConstruct(it, a)
                     }
                 }
                 is JsonString -> a.text = "\""+j.value+"\""
@@ -37,28 +42,28 @@ class JsonTreeSkeleton(json: Json) {
                 is JsonObject -> {
                     a.text = "(object)"
                     j.jsonObject.forEach {
-                        treeConstructor(it, a)
+                        tConstruct(it, a)
                     }
                 }
                 is JsonMap -> {
                     a.text = j.getKey().replace("\"", "")
                     when(val v = j.value){
-                        is JsonArray -> treeConstructor(v, a)
+                        is JsonArray -> tConstruct(v, a)
                         is JsonString -> a.text += ": \""+v.value+"\""
                         is JsonNull -> a.text += ": null"
                         is JsonNumber -> a.text += ": "+v.value.toString()
                         is JsonBoolean -> a.text += ": "+v.value.toString()
-                        is JsonObject -> treeConstructor(v, a)
-                        is JsonMap -> treeConstructor(v, a)
+                        is JsonObject -> tConstruct(v, a)
+                        is JsonMap -> tConstruct(v, a)
                     }
 
                 }
             }
         }
 
-        treeConstructor(json.json)
+        tConstruct(json.json)
 
-        val label = Label(shell, SWT.BORDER)
+        val label = Label(outerGroup, SWT.BORDER)
         tree.addSelectionListener(object : SelectionAdapter() {
             override fun widgetSelected(e: SelectionEvent) {
                 label.requestLayout()
@@ -71,13 +76,11 @@ class JsonTreeSkeleton(json: Json) {
         })
     }
 
-    fun open() {
-        //... popular a tree com TreeItem
+    fun open(json: Json) {
+        treeConstructor(json)
         tree.expandAll()
-        shell.layout = FillLayout(SWT.HORIZONTAL);
-        shell.pack();
-        shell.layout(true);
-        shell.open();
+        shell.pack()
+        shell.open()
         val display = Display.getDefault()
         while (!shell.isDisposed) {
             if (!display.readAndDispatch()) display.sleep()

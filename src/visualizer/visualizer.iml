@@ -8,10 +8,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime (3)" level="project" />
+    <orderEntry type="module" module-name="JSONLibrary.main" exported="" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/swt.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/swt-4.19-win32-win32-x86_64/swt.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

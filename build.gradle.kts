@@ -14,7 +14,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test-junit"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.0")
-    implementation(files("src/visualizer/libs/swt.jar"))
+    implementation(files("/src/visualizer/libs/swt-4.19-win32-win32-x86_64/swt.jar"))
 }
 
 tasks.test {

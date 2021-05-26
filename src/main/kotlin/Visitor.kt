@@ -21,6 +21,7 @@ class Serialize : Visitor {
             }
         }
         println()
+        str += "\n"
         println("}")
         str += "}\n"
     }
@@ -51,7 +52,7 @@ class Serialize : Visitor {
     }
 }
 
-class Search(var text: String) : Visitor {
+class Search(private var text: String) : Visitor {
 
     var searchResponse: MutableList<JsonValue> = mutableListOf()
 

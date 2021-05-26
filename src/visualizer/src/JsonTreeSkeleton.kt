@@ -1,26 +1,24 @@
 import org.eclipse.swt.SWT
 import org.eclipse.swt.events.SelectionAdapter
 import org.eclipse.swt.events.SelectionEvent
+import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.layout.GridLayout
 import org.eclipse.swt.widgets.*
 
-
-data class Dummy(val number: Int)
-
-class JsonTreeSkeleton(var json: Json) {
-    val shell: Shell
+class JsonTreeSkeleton(json: Json) {
+    private val shell: Shell = Shell(Display.getDefault())
     val tree: Tree
+    lateinit var composite: Composite
 
     init {
-        shell = Shell(Display.getDefault())
-        shell.text = "File tree skeleton"
-        shell.layout = GridLayout(2,true)
-
+        //shell.setSize(500, 500)
+        shell.text = "Json tree skeleton"
+        shell.layout = GridLayout(2,false)
         tree = Tree(shell, SWT.SINGLE or SWT.BORDER)
 
         fun treeConstructor(j: JsonValue, dad: TreeItem? = null){
-            var a: TreeItem = if(dad == null)
+            val a: TreeItem = if(dad == null)
                 TreeItem(tree, SWT.NONE)
             else
                 TreeItem(dad, SWT.NONE)
@@ -61,12 +59,11 @@ class JsonTreeSkeleton(var json: Json) {
         treeConstructor(json.json)
 
         val label = Label(shell, SWT.BORDER)
-        label.layoutData = GridData(GridData.BEGINNING, GridData.BEGINNING, false, true)
-        label.text = "skeleton"
         tree.addSelectionListener(object : SelectionAdapter() {
             override fun widgetSelected(e: SelectionEvent) {
+                label.requestLayout()
                 println(tree.selection)
-                var vis = Serialize()
+                val vis = Serialize()
                 val item: JsonValue = tree.selection.first().data as JsonValue
                 item.accept(vis).toString()
                 label.text = vis.str
@@ -74,17 +71,13 @@ class JsonTreeSkeleton(var json: Json) {
         })
     }
 
-    // auxiliar para profundidade do nó
-    fun TreeItem.depth(): Int =
-        if(parentItem == null) 0
-        else 1 + parentItem.depth()
-
-
     fun open() {
-        //... popular a arvore com TreeItem
+        //... popular a tree com TreeItem
         tree.expandAll()
-        shell.pack()
-        shell.open()
+        shell.layout = FillLayout(SWT.HORIZONTAL);
+        shell.pack();
+        shell.layout(true);
+        shell.open();
         val display = Display.getDefault()
         while (!shell.isDisposed) {
             if (!display.readAndDispatch()) display.sleep()

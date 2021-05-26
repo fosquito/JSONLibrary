@@ -8,34 +8,46 @@ interface Visitor {
 
 class Serialize : Visitor {
 
+    var str = ""
+
     override fun visit(j: JsonObject) {
         println("{")
+        str += "{\n"
         j.jsonObject.forEach {
             it.accept(this)
-            if(!j.isLast(it))
+            if(!j.isLast(it)) {
                 println(",")
+                str += ",\n"
+            }
         }
         println()
         println("}")
+        str += "}\n"
     }
 
     override fun visit(j: JsonMap) {
         print(j.getKey()+": ")
+        str += j.getKey()+": "
         j.value.accept(this)
     }
 
     override fun visit(j: JsonArray) {
         print("[")
+        str += "["
         j.value.forEach {
             it.accept(this)
-            if(!j.isLast(it))
+            if (!j.isLast(it)){
                 print(", ")
+                str += ", "
+            }
         }
         println("]")
+        str += "]\n"
     }
 
     override fun visit(j: JsonValue) {
         print(j.getValue())
+        str += j.getValue()
     }
 }
 

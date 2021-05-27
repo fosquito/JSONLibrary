@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Serialization" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-27T13:13:29" hostname="FOSQUITOMIGAMIN" time="0.007">
+<testsuite name="Serialization" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-27T13:55:52" hostname="FOSQUITOMIGAMIN" time="0.012">
   <properties/>
-  <testcase name="test03" classname="Serialization" time="0.007"/>
-  <system-out><![CDATA["age": 30]]></system-out>
+  <testcase name="test04" classname="Serialization" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

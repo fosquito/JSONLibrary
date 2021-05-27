@@ -15,7 +15,7 @@ class JsonObject : JsonValue() {
     fun add (element: Any) {
         element::class.memberProperties.forEach {
             if(it.hasAnnotation<Ignore>()){
-
+                return
             }
             else if(it.getter.call(element) == null){
                 jsonObject.add(JsonMap(it.name, JsonNull()))

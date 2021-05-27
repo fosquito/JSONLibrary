@@ -25,4 +25,11 @@ class Serialization {
 
         j.json.accept(visitor)
     }
+
+    @Test
+    fun test04() {
+        val age = Json(30) // Instanciar o modelo Json
+        val visitor = Search("30") // Instanciar o visitor Serialize
+        age.json.accept(visitor) // Serializar o modelo Json para texto
+    }
 }

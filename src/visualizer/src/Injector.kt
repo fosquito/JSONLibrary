@@ -10,6 +10,9 @@ import kotlin.reflect.jvm.isAccessible
 @Target(AnnotationTarget.PROPERTY)
 annotation class Inject
 
+@Target(AnnotationTarget.PROPERTY)
+annotation class InjectAdd
+
 
 class Injector {
 
@@ -36,11 +39,11 @@ class Injector {
                     val obj = map[key]!!.first().createInstance()
                     (it as KMutableProperty<*>).setter.call(o, obj)
                 }
-                //else if(it.hasAnnotation<InjectAdd>()) {
-                //    it.isAccessible = true
-                //    val col = it.call(o) as Collection<Any>
-
-                //}
+                else if(it.hasAnnotation<InjectAdd>()) {
+                    val key = it.name
+                    val obj = map[key]!!.map { a -> a.createInstance() }
+                    (it.getter.call(o) as MutableList<Any>).addAll(obj)
+                }
             }
             return o
         }

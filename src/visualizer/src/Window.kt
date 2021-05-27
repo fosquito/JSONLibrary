@@ -1,28 +1,40 @@
 import org.eclipse.swt.SWT
 import org.eclipse.swt.events.SelectionAdapter
 import org.eclipse.swt.events.SelectionEvent
+import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.layout.GridLayout
 import org.eclipse.swt.widgets.*
 
-class JsonTreeSkeleton() {
-    private val shell: Shell = Shell(Display.getDefault())
+
+class Window {
+    val shell: Shell = Shell(Display.getDefault())
     @Inject
     lateinit var setup: FrameSetup
     lateinit var tree: Tree
+    @InjectAdd
+    var actions = mutableListOf<Action>()
+    lateinit var json: Json
+    private lateinit var outerGroup: Group
+    private lateinit var outerGroupButton: Group
+    lateinit var label: Label
 
-    private fun treeConstructor(json: Json) {
+    private fun treeConstructor() {
         shell.text = setup.text
         shell.layout = GridLayout(1,false)
 
-        var outerGroup = Group(shell, SWT.NONE)
+        outerGroup = Group(shell, SWT.NONE)
         outerGroup.layoutData = GridData(SWT.FILL, SWT.FILL, true, true)
         outerGroup.layout = setup.gridLayout
 
+        outerGroupButton = Group(shell, SWT.NONE)
+        outerGroupButton.layout = FillLayout(SWT.HORIZONTAL)
+
         tree = Tree(outerGroup, SWT.SINGLE or SWT.BORDER)
         fun tConstruct(j: JsonValue, dad: TreeItem? = null){
-            val a: TreeItem = if(dad == null)
+            val a: TreeItem = if(dad == null) {
                 TreeItem(tree, SWT.NONE)
+            }
             else
                 TreeItem(dad, SWT.NONE)
             a.data = j
@@ -61,7 +73,7 @@ class JsonTreeSkeleton() {
 
         tConstruct(json.json)
 
-        val label = Label(outerGroup, SWT.BORDER)
+        label = Label(outerGroup, SWT.BORDER)
         tree.addSelectionListener(object : SelectionAdapter() {
             override fun widgetSelected(e: SelectionEvent) {
                 label.requestLayout()
@@ -74,8 +86,23 @@ class JsonTreeSkeleton() {
         })
     }
 
+    private fun addButtons(){
+        actions.forEach { action ->
+            val window = this
+            val button = Button(outerGroupButton, SWT.NONE)
+            button.text = action.name
+            button.addSelectionListener(object : SelectionAdapter() {
+                override fun widgetSelected(e: SelectionEvent) {
+                    action.execute(window)
+                }
+            })
+        }
+    }
+
     fun open(json: Json) {
-        treeConstructor(json)
+        this.json = json
+        treeConstructor()
+        addButtons()
         tree.expandAll()
         shell.pack()
         shell.open()

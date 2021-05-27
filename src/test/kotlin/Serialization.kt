@@ -4,7 +4,7 @@ class Serialization {
 
     @Test
     fun test01() {
-        var colors = example1()
+        val colors = example1()
         val visitor = Serialize()
 
         colors.json.accept(visitor)
@@ -12,9 +12,17 @@ class Serialization {
 
     @Test
     fun test02() {
-        var donut = example2()
+        val donut = example2()
         val visitor = Serialize()
 
         donut.json.accept(visitor)
+    }
+
+    @Test
+    fun test03() {
+        val j = Json(JsonMap("age", JsonNumber(30)))
+        val visitor = Serialize()
+
+        j.json.accept(visitor)
     }
 }

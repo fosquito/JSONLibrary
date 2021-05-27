@@ -23,6 +23,7 @@ class Json {
             is Map<*, Any?> -> {
                 json = JsonMap(j.entries.firstOrNull()?.key.toString(), getMapValue(j.entries.firstOrNull()?.value))
             }
+            is JsonValue -> json = j
             else -> {
                 var jObject = JsonObject()
                 jObject.add(j)
